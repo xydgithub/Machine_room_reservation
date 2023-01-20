@@ -37,6 +37,10 @@ public:
     //清空预约记录
     void cleanFile();
 
+    //初始化容器
+    void initVector();
+
+    //学生容器
 
 
 };
