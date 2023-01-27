@@ -12,7 +12,13 @@ using namespace std;
 #include "Identity.h"
 #include <string>
 #include <fstream>
+#include <vector>
 #include "GlobalFile.h"
+#include "Student.h"
+#include "Teacher.h"
+#include "algorithm"
+#include "ComputerRoom.h"
+
 class Manager : public Identity {
 public:
 
@@ -41,8 +47,18 @@ public:
     void initVector();
 
     //学生容器
+    vector<Student> vStu;
 
+    //教师容器
+    vector<Teacher> vTea;
 
+    //去重
+    bool checkRepeat(int id, int type);
+
+    //机房容器
+    vector<ComputerRoom> vCom;
+
+    void clearFile();
 };
 
 

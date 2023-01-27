@@ -6,6 +6,10 @@
 #define MACHINE_ROOM_RESERVATION_STUDENT_H
 #include <iostream>
 #include "Identity.h"
+#include "vector"
+#include "ComputerRoom.h"
+#include "GlobalFile.h"
+#include "OrderFile.h"
 using namespace std;
 
 class Student : public Identity{
@@ -34,6 +38,13 @@ public:
 
     //学生学号
     int m_Id;
+
+    //机房容器
+    vector<ComputerRoom> vCom;
+
+
+
+
 
 };
 

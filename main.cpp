@@ -9,38 +9,66 @@ using namespace std;
 #include "Student.h"
 #include "Teacher.h"
 #include "Manager.h"
-
+#include "OrderFile.h"
 
 void managerMenu(Identity *&manager) {
     while (1) {
         //管理员菜单
         manager->operMenu();
 
-        Manager *man = (Manager*)manager;
+        Manager *man = (Manager *) manager;
 
         int select = 0;
 
         cin >> select;
 
         if (select == 1) { //添加账号
-            cout << "添加账号" <<endl;
+//            cout << "添加账号" <<endl;
             man->addPerson();
         } else if (select == 2) { //查看账号
-            cout << "查看账号" <<endl;
+//            cout << "查看账号" <<endl;
             man->showPerson();
         } else if (select == 3) { //查看机房
-            cout << "查看机房" <<endl;
-            man->showPerson();
+//            cout << "查看机房" <<endl;
+            man->showComputer();
         } else if (select == 4) { //清空预约
-            cout << "清空预约" << endl;
+//            cout << "清空预约" << endl;
             man->cleanFile();
         } else {
             delete manager;
-            cout << "注销成功" << endl;
+//            cout << "注销成功" << endl;
             system("pause");
             system("cls");
             return;
         }
+    }
+}
+
+void studentMenu(Identity *&student) {
+    while (true) {
+        student->operMenu();
+        Student *stu = (Student *) student;
+        int select = 0;
+
+        cin >> select;
+
+        if (select == 1) //申请预约
+        {
+            stu->applyOrder();
+        } else if (select == 2) //查看自身预约
+        {
+            stu->showMyOrder();
+        } else if (select == 3) //查看所有预约
+        {
+            stu->showAllOrder();
+        } else {
+            delete student;
+            cout <<"注销成功" << endl;
+            system("pause");
+            system("cls");
+            return;
+        }
+
     }
 }
 
@@ -52,7 +80,7 @@ void LoginIn(string filename, int type) {
 
     //文件不存在时
     if (!ifs.is_open()) {
-        cout << "文件不存在" <<endl;
+        cout << "文件不存在" << endl;
         ifs.close();
         return;
     }
@@ -66,14 +94,14 @@ void LoginIn(string filename, int type) {
         cout << "请输入你的学号" << endl;
         cin >> id;
     } else if (type == 2) { //教师登录
-        cout << "请输入你的职工号" <<endl;
+        cout << "请输入你的职工号" << endl;
         cin >> id;
     }
 
     cout << "请输入用户名：" << endl;
     cin >> name;
 
-    cout << "请输入密码：" <<endl;
+    cout << "请输入密码：" << endl;
     cin >> pwd;
 
     if (type == 1) {
@@ -87,7 +115,7 @@ void LoginIn(string filename, int type) {
                 system("pause");
                 system("cls");
                 person = new Student(id, name, pwd);
-
+                studentMenu(person);
                 return;
             }
 
@@ -103,7 +131,6 @@ void LoginIn(string filename, int type) {
                 system("pause");
                 system("cls");
                 person = new Teacher(id, name, pwd);
-
 
 
                 return;
@@ -139,8 +166,7 @@ void LoginIn(string filename, int type) {
 
 void test01() {
     ofstream out("arrin.txt");
-    if (out.is_open())
-    {
+    if (out.is_open()) {
         out << "This is a line.\n";
         out << "This is another line.\n";
         out.close();
@@ -148,6 +174,7 @@ void test01() {
 
 
 }
+
 int main() {
     int select = 0;
     while (1) {
