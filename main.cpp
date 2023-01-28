@@ -61,9 +61,12 @@ void studentMenu(Identity *&student) {
         } else if (select == 3) //查看所有预约
         {
             stu->showAllOrder();
+        } else if (select == 4) //取消预约
+        {
+            stu->cancelOrder();
         } else {
             delete student;
-            cout <<"注销成功" << endl;
+            cout << "注销成功" << endl;
             system("pause");
             system("cls");
             return;
@@ -72,6 +75,37 @@ void studentMenu(Identity *&student) {
     }
 }
 
+void teacherMenu(Identity * &teacher)
+{
+    while (true)
+    {
+
+        teacher->operMenu();
+
+        Teacher * tea = (Teacher*)teacher;
+
+        int select = 0;
+
+        cin >> select;
+
+        if (select == 1)
+        {
+            tea->showAllOrder();
+        }
+        else if (select == 2)
+        {
+            tea->validOrder();
+        }
+        else
+        {
+            delete teacher;
+            cout << "注销成功" << endl;
+            system("pause");
+            system("cls");
+            return;
+        }
+    }
+}
 void LoginIn(string filename, int type) {
     Identity *person = nullptr;
 
@@ -131,7 +165,7 @@ void LoginIn(string filename, int type) {
                 system("pause");
                 system("cls");
                 person = new Teacher(id, name, pwd);
-
+                teacherMenu(person);
 
                 return;
             }

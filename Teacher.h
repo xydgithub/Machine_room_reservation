@@ -8,7 +8,8 @@
 using namespace std;
 #include "Identity.h"
 #include <string>
-
+#include "vector"
+#include "OrderFile.h"
 
 class Teacher : public Identity {
 public:
@@ -23,8 +24,8 @@ public:
     virtual void operMenu();
 
 
-    //查看我的预约
-    void showMyOrder();
+    //查看所有预约
+    void showAllOrder();
 
 
     //审核预约
